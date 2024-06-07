@@ -6,7 +6,16 @@ import SRTViewer from "./SRTViewer";
 const App = () => {
   const dispatch = useDispatch();
   const { currentLine, song } = useSelector((state) => state.song);
-  const { subtitles } = useSelector((state) => state.subtitles);
+  const [subtitles, setSubtitles] = useState([]);
+  const [timeIntervals, setTimeIntervals] = useState([]);
+
+  const handleLyricsParsed = (parsedSubtitles) => {
+    setSubtitles(parsedSubtitles);
+  };
+
+  const handleTimeParsed = (parsedTimeIntervals) => {
+    setTimeIntervals(parsedTimeIntervals);
+  };
 
   // console.log(su)
   const lyrics = [
@@ -36,10 +45,6 @@ const App = () => {
   const handleChange = (event) => {
     dispatch(setSong(event.target.value));
   };
-
-  const onLyricsParsed = (parsedSubtitles) => {
-    console.log(subtitles);
-  }
 
   return (
       <div>
